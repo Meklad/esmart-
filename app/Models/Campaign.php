@@ -66,7 +66,8 @@ class Campaign extends Model
      * @param string $value
      * @return void
      */
-    public function setFromAttribute( $value ) {
+    public function setFromAttribute( $value )
+    {
         $this->attributes['from'] = (new Carbon($value))->format('d-m-y H:m');
     }
 
@@ -76,7 +77,8 @@ class Campaign extends Model
      * @param string $value
      * @return void
      */
-    public function setToAttribute( $value ) {
+    public function setToAttribute( $value )
+    {
         $this->attributes['to'] = (new Carbon($value))->format('d-m-y H:m');
     }
 }
