@@ -6,6 +6,31 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Models\Campaign
+ *
+ * @property int $id
+ * @property string $name
+ * @property \Illuminate\Support\Carbon $from
+ * @property \Illuminate\Support\Carbon $to
+ * @property float $total
+ * @property float $daily_budget
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Database\Factories\CampaignFactory factory(...$parameters)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign query()
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereDailyBudget($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereFrom($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereTo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Campaign whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
 class Campaign extends Model
 {
     use HasFactory;
@@ -13,7 +38,7 @@ class Campaign extends Model
     /**
      * Fillable Fields
      *
-     * @var array
+     * @var array<string>
      */
     public $fillable = [
         "name",
@@ -26,7 +51,7 @@ class Campaign extends Model
     /**
      * Casting attributes
      *
-     * @var array
+     * @var array<string, string>
      */
     public $casts = [
         "from" => "datetime:Y-m-d H:m a",

@@ -3,9 +3,11 @@
 namespace App\Http\Repositories\Apis;
 
 use App\Models\Campaign;
-use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use App\Http\Requests\Apis\Campaign\{
+    CreateCampaignApiRequest,
+    UpdateCampaignApiRequest
+};
 
 class CampaignRepository
 {
@@ -13,15 +15,11 @@ class CampaignRepository
     /**
      * Get all Campaigns order by created_at, and check if need pagination.
      *
-     * @param bool $withPagination if true than will load the collection with pagination
-     * @return Collection
+     * @return LengthAwarePaginator
      */
-    public function all($withPagination = false) : Collection | LengthAwarePaginator
+    public function all() : LengthAwarePaginator
     {
-        if($withPagination) {
-            return Campaign::orderBy("created_at", "DESC")->paginate(5);
-        }
-        return Campaign::orderBy("created_at", "DESC")->get();
+        return Campaign::orderBy("created_at", "DESC")->paginate(5);
     }
 
     /**
@@ -38,10 +36,10 @@ class CampaignRepository
     /**
      * Create new Campaign.
      *
-     * @param Request $request
+     * @param CreateCampaignApiRequest $request
      * @return Campaign
      */
-    public function create(Request $request) : Campaign
+    public function create(CreateCampaignApiRequest $request) : Campaign
     {
         return Campaign::create($request->except('images'));
     }
@@ -50,10 +48,10 @@ class CampaignRepository
      * Update Campaign.
      *
      * @param Campaign $campaign
-     * @param Request $request
+     * @param UpdateCampaignApiRequest $request
      * @return Campaign
      */
-    public function update(Campaign $campaign, Request $request) : Campaign
+    public function update(Campaign $campaign, UpdateCampaignApiRequest $request) : Campaign
     {
         $campaign->update($request->except('images'));
         return $campaign;
@@ -63,11 +61,10 @@ class CampaignRepository
      * Delete the Campaign from database, and return empty array.
      *
      * @param Campaign $campaign
-     * @return array
+     * @return void
      */
-    public function delete(Campaign $campaign) : array
+    public function delete(Campaign $campaign) : void
     {
         $campaign->delete();
-        return [];
     }
 }
