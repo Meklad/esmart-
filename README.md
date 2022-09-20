@@ -51,4 +51,4 @@ $ php artisan test
 #### Note: When you run the unit test the ".env.testing" will contain the environment associated with the unit test. 
 
 ### Important Note:
-- In addition, I installed GitHub workflow to build and test the code for CD/CI.
+- In addition, I installed GitHub workflow to build and test the code for CD/CI, and you can check the log from actions tab.
