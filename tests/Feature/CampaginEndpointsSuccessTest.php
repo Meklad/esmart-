@@ -2,13 +2,11 @@
 
 namespace Tests\Feature;
 
-use App\Models\Campaign;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use App\Models\Campaign;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 
-class CampaginDatabaseTest extends TestCase
+class CampaginEndpointsSuccessTest extends TestCase
 {
     use DatabaseMigrations;
 
