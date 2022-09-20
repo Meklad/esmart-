@@ -1,0 +1,289 @@
+{
+	"info": {
+		"_postman_id": "e3e39794-3c84-436c-bba6-31fee7c7f4ae",
+		"name": "Esmart Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4213585"
+	},
+	"item": [
+		{
+			"name": "Campaigns",
+			"item": [
+				{
+					"name": "Get All Campaigns",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-ty",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}campaigns",
+							"host": [
+								"{{api_url}}campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Campaigns",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-ty",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "campaign 7",
+									"type": "text"
+								},
+								{
+									"key": "from",
+									"value": "19-09-2022 06:00 PM",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "22-09-2022 06:00 PM",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "20.22",
+									"type": "text"
+								},
+								{
+									"key": "daily_budget",
+									"value": "20.27",
+									"type": "text"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": "/C:/Users/DAR-F/Downloads/Cacxzpture.PNG"
+								},
+								{
+									"key": "images[]",
+									"type": "file",
+									"src": "/C:/Users/DAR-F/Downloads/Captuddfre.PNG"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_url}}campaigns",
+							"host": [
+								"{{api_url}}campaigns"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Campaign using ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-ty",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}campaigns/13",
+							"host": [
+								"{{api_url}}campaigns"
+							],
+							"path": [
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Campaign",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "gkfdgjlkfdjggd",
+									"type": "text"
+								},
+								{
+									"key": "from",
+									"value": "22-10-2022 11:50 PM",
+									"type": "text"
+								},
+								{
+									"key": "to",
+									"value": "23-10-2022 11:50 PM",
+									"type": "text"
+								},
+								{
+									"key": "total",
+									"value": "30.30",
+									"type": "text"
+								},
+								{
+									"key": "daily_budget",
+									"value": "60.60",
+									"type": "text"
+								},
+								{
+									"key": "images",
+									"type": "file",
+									"src": "FB_IMG_1618236670798.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api_url}}campaigns/13",
+							"host": [
+								"{{api_url}}campaigns"
+							],
+							"path": [
+								"13"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Campaign using ID",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "content-ty",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{api_url}}campaigns/1",
+							"host": [
+								"{{api_url}}campaigns"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Campagin Image/Images",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"images\": [8]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api_url}}campaigns/delete-capmaign-images/3",
+							"host": [
+								"{{api_url}}campaigns"
+							],
+							"path": [
+								"delete-capmaign-images",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "api_url",
+			"value": "https://esmart.market/api/v1/",
+			"type": "string"
+		}
+	]
+}
