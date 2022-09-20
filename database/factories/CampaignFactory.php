@@ -24,7 +24,7 @@ class CampaignFactory extends Factory
             "total" => $this->faker->randomFloat(2,100,10000),
             "daily_budget" => $this->faker->randomFloat(2,100,10000),
             "created_at" => Carbon::now(),
-            "updated_at" => Carbon::now(),
+            "updated_at" => Carbon::now()
         ];
     }
 }

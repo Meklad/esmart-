@@ -45,11 +45,13 @@ class CampaignRepository
     {
         $campaign = Campaign::create($request->except('images'));
 
-        $campaign->addMultipleMediaFromRequest(['images'])
-        ->each(function ($fileAdder) {
-            /** @phpstan-ignore-next-line */
-            $fileAdder->toMediaCollection('campaign');
-        });
+        if(!empty($request->images)) {
+            $campaign->addMultipleMediaFromRequest(['images'])
+                     ->each(function ($fileAdder) {
+                        /** @phpstan-ignore-next-line */
+                        $fileAdder->toMediaCollection('campaign');
+                    });
+        }
 
         return $campaign;
     }
