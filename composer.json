@@ -33,11 +33,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/"
-        },
-        "classmap": [
-            "tests/TestCase.php",
-            "tests/support/DatabaseMigrations.php"
-        ]
+        }
     },
     "scripts": {
         "post-autoload-dump": [
