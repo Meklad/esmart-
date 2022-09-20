@@ -2,10 +2,9 @@
 
 namespace App\Http\Resources\Apis;
 
-use App\Http\Resources\Apis\MediaResource;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CampaignResource extends JsonResource
+class MediaResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,11 +17,9 @@ class CampaignResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
-            "from" => $this->from,
-            "to" => $this->to,
-            "total" => $this->total,
-            "daily_budget" => $this->daily_budget,
-            "images" => MediaResource::collection($this->media)
+            "file_name" => $this->file_name,
+            "mime_type" => $this->mime_type,
+            "url" => $this->original_url
         ];
     }
 }

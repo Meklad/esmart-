@@ -11,6 +11,7 @@ use App\Http\Requests\Apis\Campaign\{
     CreateCampaignApiRequest,
     UpdateCampaignApiRequest
 };
+use Illuminate\Http\Request;
 
 class CampaignController extends Controller
 {
@@ -85,6 +86,18 @@ class CampaignController extends Controller
     public function destroy(Campaign $campaign) : CampaignResource
     {
         $this->_campaignRepository->delete($campaign);
-        return new CampaignResource([]);
+        return new CampaignResource($campaign);
+    }
+
+    /**
+     * Delete specific images associated with this campaign using an array of image ids.
+     *
+     * @param  \App\Models\Campaign  $campaign
+     * @return CampaignResource
+     */
+    public function deleteCapmaignImages(Campaign $campaign, Request $request) : CampaignResource
+    {
+        $this->_campaignRepository->deleteCapmaignImages($request);
+        return new CampaignResource($campaign);
     }
 }

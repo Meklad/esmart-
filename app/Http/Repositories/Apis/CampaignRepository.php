@@ -4,10 +4,12 @@ namespace App\Http\Repositories\Apis;
 
 use App\Models\Campaign;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use App\Http\Requests\Apis\Campaign\{
     CreateCampaignApiRequest,
     UpdateCampaignApiRequest
 };
+use Illuminate\Http\Request;
 
 class CampaignRepository
 {
@@ -41,7 +43,15 @@ class CampaignRepository
      */
     public function create(CreateCampaignApiRequest $request) : Campaign
     {
-        return Campaign::create($request->except('images'));
+        $campaign = Campaign::create($request->except('images'));
+
+        $campaign->addMultipleMediaFromRequest(['images'])
+        ->each(function ($fileAdder) {
+            /** @phpstan-ignore-next-line */
+            $fileAdder->toMediaCollection('campaign');
+        });
+
+        return $campaign;
     }
 
     /**
@@ -54,6 +64,15 @@ class CampaignRepository
     public function update(Campaign $campaign, UpdateCampaignApiRequest $request) : Campaign
     {
         $campaign->update($request->except('images'));
+
+        if(!empty($request->images)) {
+            $campaign->addMultipleMediaFromRequest(['images'])
+            ->each(function ($fileAdder) {
+                /** @phpstan-ignore-next-line */
+                $fileAdder->toMediaCollection('campaign');
+            });
+        }
+
         return $campaign;
     }
 
@@ -66,5 +85,19 @@ class CampaignRepository
     public function delete(Campaign $campaign) : void
     {
         $campaign->delete();
+    }
+
+    /**
+     * Delete specific images associated with this campaign using an array of image ids.
+     *
+     * @param Request $request
+     * @return void
+     */
+    public function deleteCapmaignImages(Request $request) : void
+    {
+        $media = Media::whereIn("id", $request->images)->get();
+        foreach ($media as $image) {
+            $image->delete();
+        }
     }
 }
