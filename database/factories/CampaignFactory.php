@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,13 @@ class CampaignFactory extends Factory
     public function definition()
     {
         return [
-            //
+            "name" => $this->faker->name,
+            "from" => Carbon::now(),
+            "to" => Carbon::now(),
+            "total" => $this->faker->randomFloat(2,100,10000),
+            "daily_budget" => $this->faker->randomFloat(2,100,10000),
+            "created_at" => Carbon::now(),
+            "updated_at" => Carbon::now(),
         ];
     }
 }
