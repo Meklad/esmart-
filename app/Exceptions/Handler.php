@@ -2,8 +2,11 @@
 
 namespace App\Exceptions;
 
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Support\Facades\Request;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -43,8 +46,29 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-            //
-        });
+        if (Request::wantsJson()) {
+            $this->renderable(function (NotFoundHttpException $e) {
+                return response([
+                    'status' => 404,
+                    'success' => false,
+                    'message' =>  $e->getMessage(),
+                ], 404);
+            });
+
+            $this->renderable(function (MethodNotAllowedHttpException $e) {
+                return response([
+                    'status' => 405,
+                    'success' => false,
+                    'message' =>  $e->getMessage(),
+                ], 405);
+            });
+        } else {
+            $this->reportable(function (Throwable $e) {
+                return response([
+                    'success' => false,
+                    'message' =>  $e->getMessage(),
+                ]);
+            });
+        }
     }
 }
