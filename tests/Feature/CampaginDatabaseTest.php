@@ -2,8 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Http\Resources\Apis\CampaignResource;
-use App\Models\Campaign;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
