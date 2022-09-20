@@ -2,14 +2,14 @@
 
 namespace App\Http\Repositories\Apis;
 
+use Cache;
 use App\Models\Campaign;
-use Illuminate\Pagination\LengthAwarePaginator;
-use Spatie\MediaLibrary\MediaCollections\Models\Media;
+use Illuminate\Http\Request;
 use App\Http\Requests\Apis\Campaign\{
     CreateCampaignApiRequest,
     UpdateCampaignApiRequest
 };
-use Illuminate\Http\Request;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class CampaignRepository
 {
@@ -17,11 +17,14 @@ class CampaignRepository
     /**
      * Get all Campaigns order by created_at, and check if need pagination.
      *
-     * @return LengthAwarePaginator
+     * @return mixed
      */
-    public function all() : LengthAwarePaginator
+    public function all() : mixed
     {
-        return Campaign::orderBy("created_at", "DESC")->paginate(5);
+        return Cache::remember('campaigns-page-' . request('page', 1), now()
+                    ->addMinutes(60), function () {
+                        return Campaign::orderBy("created_at", "DESC")->paginate(5);
+                    });
     }
 
     /**

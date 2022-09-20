@@ -36,9 +36,9 @@ class CampaignController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return AnonymousResourceCollection
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function index() : AnonymousResourceCollection
+    public function index() : \Illuminate\Http\Resources\Json\AnonymousResourceCollection
     {
         return CampaignResource::collection($this->_campaignRepository->all());
     }
