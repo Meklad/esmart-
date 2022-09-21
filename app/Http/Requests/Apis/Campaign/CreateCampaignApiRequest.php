@@ -28,7 +28,9 @@ class CreateCampaignApiRequest extends FormRequest
             "from" => ["required", "date"],
             "to" => ["required", "date"],
             "total" => ["required", "numeric"],
-            "daily_budget" => ["required", "numeric"]
+            "daily_budget" => ["required", "numeric"],
+            "images" => ["array", "min:1"],
+            "images.*" => ["image", "mimes:jpeg,png,jpg,gif"]
         ];
     }
 }

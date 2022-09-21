@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        Campaign::factory(10)->create()->each(function($campaign) {
+        Campaign::factory(20)->create()->each(function($campaign) {
             $campaign->addMedia(public_path("seeding_images/rastau_1.jpg"))
             ->preservingOriginal()
             ->toMediaCollection("campaign");

@@ -24,11 +24,13 @@ class UpdateCampaignApiRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => ["string"],
-            "from" => ["date"],
-            "to" => ["date"],
-            "total" => ["numeric"],
-            "daily_budget" => ["numeric"]
+            "name" => ["required", "string"],
+            "from" => ["required", "date"],
+            "to" => ["required", "date"],
+            "total" => ["required", "numeric"],
+            "daily_budget" => ["required", "numeric"],
+            "images" => ["array", "min:1"],
+            "images.*" => ["image", "mimes:jpeg,png,jpg,gif"]
         ];
     }
 }

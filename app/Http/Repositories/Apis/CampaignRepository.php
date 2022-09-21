@@ -21,10 +21,7 @@ class CampaignRepository
      */
     public function all() : mixed
     {
-        return Cache::remember('campaigns-page-' . request('page', 1), now()
-                    ->addMinutes(60), function () {
-                        return Campaign::orderBy("created_at", "DESC")->paginate(5);
-                    });
+        return Campaign::orderBy("created_at", "DESC")->paginate(10);
     }
 
     /**

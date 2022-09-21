@@ -35,6 +35,11 @@ class CampaignObserver
         $this->_clearCache();
     }
 
+    public function create(Campaign $campaign) : void
+    {
+        $this->_clearCache();
+    }
+
     /**
      * Handle the Campaign "updated" event.
      *
