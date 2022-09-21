@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\User;
 use App\Models\Campaign;
 use Illuminate\Database\Seeder;
 
@@ -16,6 +17,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        User::factory(1)->create();
+
         Campaign::factory(20)->create()->each(function($campaign) {
             $campaign->addMedia(public_path("seeding_images/rastau_1.jpg"))
             ->preservingOriginal()
